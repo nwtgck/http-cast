@@ -16,6 +16,11 @@ const server = http.createServer((req, res) => {
   switch (req.method) {
     case "POST":
     case "PUT":
+      if(pathToSender.has(path)) {
+        res.writeHead(400);
+        res.end("Another sender is already connected\n");
+        return;
+      }
       const receivers = pathToReceivers.get(path);
       pathToReceivers.delete(path);
       if(receivers !== undefined) {
