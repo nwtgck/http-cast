@@ -32,6 +32,7 @@ const server = http.createServer((req, res) => {
             r.res.destroy();
           }
         }
+        res.end('Finished\n');
       };
       req.on('close', handleSender);
       req.on('end', handleSender);
